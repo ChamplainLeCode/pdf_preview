@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "node serveur/start.js",
+    "clean": "rm node_modules/ client/node_modules/ -r",
+    "pub_get": "npm install ; cd client ; npm install ; cd .. "
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "name": "sweet_viewer",
+  "version": "1.0.0",
+  "description": "Best way to integrate pdf reader into html document base on pdf.js",
+  "author": "Champlain N. Bakop",
+  "license": "ISC"
+}
