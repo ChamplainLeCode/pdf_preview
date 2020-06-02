@@ -3,9 +3,7 @@ const path = require('path');
 const router = express.Router();
 const app = express();
 
-console.log(__dirname );
 app.use(express.static(__dirname + '/'));
-console.log(__dirname );
 
 router.get('/',function(req,res){
   res.render(path.join(__dirname+"/index.html"));

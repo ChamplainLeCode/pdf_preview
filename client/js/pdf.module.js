@@ -7,7 +7,7 @@ export const pdfState = {
     currentState : {
         pdf: null,
         zoom: 1,
-        currentPage: 2,
+        currentPage: 0,
         height: 0,
         width: 0,
         position: {
@@ -16,7 +16,6 @@ export const pdfState = {
         },
     },
     set: function(pdfStateItem, pdfStateValue){
-        console.log("this["+pdfStateItem+"] = "+pdfStateValue)
         this[pdfStateItem] = pdfStateValue;
         return this;
     },
@@ -45,8 +44,6 @@ export const pdfState = {
     scroll: async function(e) { if(this.onscroll !== null && this.canSendPosition == true) await this.onscroll(e)},
     onscroll: async (e) => console.log(e),
     doscroll: function(e){
-        console.log("[doScroll]")
-        console.log(e)
         document.getElementById('pdf_parent').parentElement.style.width = e.width
         document.getElementById('pdf_parent').parentElement.style.height = e.height
         if(this.canApplyPosition) $(window).scrollTop(e.y)

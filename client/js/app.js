@@ -40,22 +40,25 @@ pdfState.set('canvasId', canvasId)
         .set('onPageChange', pipe.sendPage)
 
         
-Viewer.init(canvasId, pdfState);
-pipe.init(url, pdfState)
 
-console.log('Print start');
+//console.log('Print start');
 
 pdfjsLib.getDocument(url).then(async (pdf) => {
-    pdfState.currentState.pdf = pdf;
-    pdfState.numPages = pdf._pdfInfo.numPages;
-    pdfState.refreshPage();
+    pdfState.currentState.pdf = pdf
+    pdfState.numPages = pdf._pdfInfo.numPages
+    pdfState.currentState.currentPage = 1
+    if(pdfState.numPages > 0){
+        //pdfState.refreshPage()
+        Viewer.init(canvasId, pdfState)
+        pipe.init(url, pdfState)
+    }
     $('#lab_nb_pages').html(pdfState.numPages)
     
 });
 
 function buildQuery(searchParams){
-        console.log(searchParams = searchParams.split('?').join(''))
-        console.log(searchParams = searchParams.split('&').join('","'))
-        console.log(searchParams = searchParams.split('=').join('":"'))
+        searchParams = searchParams.split('?').join('')
+        searchParams = searchParams.split('&').join('","')
+        searchParams = searchParams.split('=').join('":"')
         return JSON.parse('{"'+searchParams+'"}')
 }

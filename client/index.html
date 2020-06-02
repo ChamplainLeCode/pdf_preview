@@ -8,7 +8,7 @@
 
         <script src="/socket.io/socket.io.js"></script>
         <script type="module" src="js/app.js"></script>
-        <script src="js/pdf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.0.943/build/pdf.min.js"></script>
         
         <style>
             #pdf_renderer{
@@ -70,9 +70,14 @@
                 border: none;
                 border-radius: 0px;
                 margin-top: -8px;
-                background: brown;
+                text-align: center;
+                font-size: 32px;
+                vertical-align: -8px;
+                margin-right: 5px;
+                cursor: pointer;
             }
             .btn_zoom{
+                cursor: pointer;
                 width: 30px;
                 border: 1px #D0D0D0 dashed;
                 text-align: center;
@@ -108,6 +113,7 @@
             .btn_page{
                 background: none;
                 border: none;
+                cursor: pointer;
                 font-size: 18pt;
                 color: #A0A0A0;
             }
@@ -127,7 +133,7 @@
                     <button class="btn_page" id="btn_page_next" title="Page suivante"><i class="fa fa-arrow-circle-right"></i></button>
                 </div>
                 <div id="end_section" class="toolbar_section">
-                    <button id="btn_change_layout">OO</button>
+                    <button id="btn_change_layout"><i class="fa fa-columns" aria-hidden="true"></i></button>
                     <input id="in_page" value="0"/>
                     <span id="lab_total_pages">sur <span id="lab_nb_pages">0</span></span>
                 </div>

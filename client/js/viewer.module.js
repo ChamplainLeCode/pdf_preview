@@ -40,7 +40,7 @@ export const Viewer = {
                 window.updatePage()
             }
         })
-        let width = 60;
+        let width = 70;
         let height = 100;
         window.updatePage = function(){
             $('#in_page').val(pdfState.currentState.currentPage)
