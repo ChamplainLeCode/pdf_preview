@@ -1,3 +1,5 @@
+import { Viewer } from "./viewer.module.js";
+
 export const pdfState = {
     numPages: 0,
     canvasId: '',
@@ -6,7 +8,7 @@ export const pdfState = {
     canApplyPosition: false,
     currentState : {
         pdf: null,
-        zoom: 1,
+        zoom: 4.5,
         currentPage: 0,
         height: 0,
         width: 0,
@@ -19,11 +21,13 @@ export const pdfState = {
         this[pdfStateItem] = pdfStateValue;
         return this;
     },
-    refreshPage: async function() {
+    refreshPage: function() {
         this.currentState.pdf.getPage(this.currentState.currentPage).then((page) => {
             let canvas = document.getElementById(this.canvasId);
             let ctx = canvas.getContext('2d');
-            let viewport = page.getViewport(this.currentState.zoom);
+            console.log(`Zoom = ${this.currentState.zoom}`);
+            console.log(Viewer.isPhone())
+            let viewport = page.getViewport( Viewer.isPhone() ? 1 : this.currentState.zoom);
     //        console.log(viewport);
             canvas.width = viewport.width;
             canvas.height = viewport.height;
@@ -38,7 +42,11 @@ export const pdfState = {
             
     
         });
-    },    
+    },
+    updateNbrUsers: (pas) => {
+        console.log(pas)
+        $('#nb_users p').html(`${parseInt(pas)}`)
+    },
     pageChanged: function(){if(this.canSendPage && this.onPageChange !== null)this.onPageChange({page: this.currentState.currentPage})},
     onPageChange: (e) => console.log(e),
     scroll: async function(e) { if(this.onscroll !== null && this.canSendPosition == true) await this.onscroll(e)},

@@ -41,18 +41,29 @@ pdfState.set('canvasId', canvasId)
 
         
 
-//console.log('Print start');
+console.log('Print start');
 
-pdfjsLib.getDocument(url).then(async (pdf) => {
-    pdfState.currentState.pdf = pdf
-    pdfState.numPages = pdf._pdfInfo.numPages
-    pdfState.currentState.currentPage = 1
+window.initPage = (page) => {
+    pdfState.currentState.currentPage = page
     if(pdfState.numPages > 0){
         //pdfState.refreshPage()
         Viewer.init(canvasId, pdfState)
         pipe.init(url, pdfState)
     }
+}
+pdfjsLib.getDocument(url).then(async (pdf) => {
+    pdfState.currentState.pdf = pdf
+    pdfState.numPages = pdf._pdfInfo.numPages
+    pdfState.currentState.currentPage = 1
+    window.initPage(pdfState.currentState.currentPage)    
+    
     $('#lab_nb_pages').html(pdfState.numPages)
+    setTimeout(() => {    
+        $('.loader').remove()
+        $(`#${canvasId}`).css('display', 'inline')
+                        .css('text-align', 'center')
+    }, 500);
+  
     
 });
 
