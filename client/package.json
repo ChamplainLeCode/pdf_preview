@@ -3,7 +3,7 @@
     "express": "^4.17.1",
     "jquery": "3.5.1",
     "jquery-touchswipe": "1.6.19",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   },
   "name": "sweet_viewer",
   "version": "1.0.0",
