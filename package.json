@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.4.0"
+    "socket.io": "^2.4.0", 
+    "xmlhttprequest-ssl": ">=1.6.2"
   },
   "name": "sweet_viewer",
   "version": "1.0.0",
